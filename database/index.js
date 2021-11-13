@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 const debug = require("debug")("socialNetwork: database");
 const chalk = require("chalk");
 const mongoose = require("mongoose");
@@ -27,4 +28,4 @@ const initializeDB = (connectionString) =>
     });
   });
 
-module.exports = initializeDB;
+module.exports = { initializeDB };

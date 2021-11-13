@@ -5,6 +5,7 @@ const debug = require("debug")("socialNetwork:server");
 const chalk = require("chalk");
 const cors = require("cors");
 const { errorhandler, notFoundErrorhandler } = require("./middlewares/error");
+const loginRoutes = require("./routes/loginRoutes");
 
 const app = express();
 app.use(cors());
@@ -34,8 +35,8 @@ const initializeServer = (port) => {
 app.use(morgan("dev"));
 app.use(express.json());
 app.use("/login", loginRoutes);
-app.use("/users", usersRoutes);
-app.use("/user", userRoutes);
+// app.use("/users", usersRoutes);
+// app.use("/user", userRoutes);
 app.use(errorhandler);
 app.use(notFoundErrorhandler);
 

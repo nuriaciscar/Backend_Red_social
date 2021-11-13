@@ -38,7 +38,7 @@ const userLogin = async (req, res, next) => {
 
 const userSignUp = async (req, res, next) => {
   const newUser = req.body;
-  const user = await User.findeOne({ username: newUser.username });
+  const user = await User.findOne({ username: newUser.username });
   if (user) {
     debug(chalk.redBright("Username already taken"));
     const error = new Error("Username already taken");
@@ -49,7 +49,7 @@ const userSignUp = async (req, res, next) => {
       const password = await bcrypt.hash(newUser.password, 10);
 
       const createUser = await User.create({
-        username: newUser.password,
+        username: newUser.username,
         password,
         name: newUser.name,
         age: newUser.age,
@@ -61,11 +61,12 @@ const userSignUp = async (req, res, next) => {
       });
       debug(chalk.blue("New user registered"));
       res.json(createUser);
-    } catch {
-      const error = new Error("Cannot register");
+    } catch (error) {
+      error.message = "Cannot register";
       error.code = 400;
       next(error);
     }
   }
 };
+
 module.exports = { userLogin, userSignUp };
