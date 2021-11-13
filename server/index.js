@@ -35,7 +35,7 @@ const initializeServer = (port) => {
 app.use(morgan("dev"));
 app.use(express.json());
 app.use("/login", loginRoutes);
-// app.use("/users", usersRoutes);
+app.use("/users", usersRoutes);
 // app.use("/user", userRoutes);
 app.use(errorhandler);
 app.use(notFoundErrorhandler);
