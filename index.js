@@ -6,7 +6,7 @@ const port = process.env.PORT ?? process.env.SERVER_PORT ?? 5000;
 
 (async () => {
   try {
-    await initializeServer(process.env.MONGODB_STRING);
+    await initializeDB(process.env.MONGODB_STRING);
     initializeServer(port);
   } catch (error) {
     process.exit(1);
