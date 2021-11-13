@@ -1,5 +1,4 @@
 require("dotenv").config();
-
 const User = require("../../database/models/user");
 
 const getUsers = async (req, res, next) => {

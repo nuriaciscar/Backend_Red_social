@@ -6,6 +6,7 @@ const chalk = require("chalk");
 const cors = require("cors");
 const { errorhandler, notFoundErrorhandler } = require("./middlewares/error");
 const loginRoutes = require("./routes/loginRoutes");
+const usersRoutes = require("./routes/usersRoutes");
 
 const app = express();
 app.use(cors());
