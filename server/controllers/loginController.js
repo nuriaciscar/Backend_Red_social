@@ -1,5 +1,5 @@
 require("dotenv").config();
-const debug = require("debug")("user:controller");
+const debug = require("debug")("login:controller");
 const bcrypt = require("bcrypt");
 const chalk = require("chalk");
 const jwt = require("jsonwebtoken");

@@ -117,15 +117,9 @@ describe("Given a userSignUp function", () => {
   describe("When it receives a request with a new username", () => {
     test("Then it should respond with a new user ", async () => {
       const newUserCreated = {
-        name: "nunu",
-        username: "nunu",
-        password: "nunu",
-        age: 21,
-        bio: "hey",
-        image: "url",
-        imageLocal: "url",
-        friends: [],
-        enemies: [],
+        name: "Dani",
+        username: "loki",
+        password: "estasmoltlokitu",
       };
 
       const req = {
@@ -138,7 +132,8 @@ describe("Given a userSignUp function", () => {
 
       const next = jest.fn();
 
-      User.findOne = jest.fn().mockResolvedValue({});
+      User.findOne = jest.fn().mockResolvedValue(false);
+      User.create = jest.fn().mockResolvedValue(newUserCreated);
 
       await userSignUp(req, res, next);
 

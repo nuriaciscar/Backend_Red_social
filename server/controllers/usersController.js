@@ -1,16 +1,10 @@
-require("dotenv").config();
 const User = require("../../database/models/user");
 
 const getUsers = async (req, res, next) => {
   try {
-    const users = await User.find({ id: user.id }).populate([
+    const users = await User.find({ id: req.user.id }).populate([
       {
-        path: "friends",
-        select: "-password -username -friends -enemies ",
-      },
-      {
-        path: "enemies",
-        select: "-password -username -friends -enemies",
+        path: "enemies friends",
       },
     ]);
     res.json(users);
