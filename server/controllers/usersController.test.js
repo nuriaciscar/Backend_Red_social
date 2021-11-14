@@ -12,7 +12,7 @@ describe("Given a getUsers function", () => {
         json: jest.fn().mockReturnThis(),
       };
       const req = null;
-      User.find = jest.fn().mockReturnThis();
+      User.findOne = jest.fn().mockReturnThis();
       User.populate = jest.fn().mockResolvedValue(users);
 
       await getUsers(req, res);
@@ -30,7 +30,7 @@ describe("Given a getUsers function", () => {
       const req = null;
       User.find = jest.fn().mockReturnThis();
       const next = jest.fn();
-      User.find = jest.fn().mockReturnThis();
+      User.findOne = jest.fn().mockReturnThis();
       User.populate = jest.fn().mockResolvedValue(error);
 
       await getUsers(req, res, next);
