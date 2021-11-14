@@ -11,6 +11,8 @@ const { app } = require("../index");
 
 const request = supertest(app);
 
+jest.setTimeout(10000);
+
 let server;
 
 beforeAll(async () => {
