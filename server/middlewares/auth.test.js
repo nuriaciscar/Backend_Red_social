@@ -38,14 +38,14 @@ describe("Given an auth middleware", () => {
     });
   });
   describe("When it gets a request with a Authorization header but with an incorrect token", () => {
-    test("Then it should send an error with a message 'Token no valid' and status 401", async () => {
+    test("Then it should send an error with a message 'Token is missing...' and status 401", async () => {
       const req = {
         json: jest.fn(),
         header: jest.fn().mockReturnValue("Bearer token"),
       };
 
       const next = jest.fn();
-      const errorSent = new Error("Token no valid");
+      const errorSent = new Error("Token is missing...");
       errorSent.code = 401;
 
       const error = new Error();
