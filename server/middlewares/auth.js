@@ -1,27 +1,21 @@
 const jwt = require("jsonwebtoken");
 
-const auth = (req, res, next) => {
-  const authHeader = req.header("Authorization");
-  if (!authHeader) {
+const auth = async (req, res, next) => {
+  if (!req.headers.authorization) {
     const error = new Error("Not authorized sorry");
     error.code = 401;
     next(error);
   } else {
-    const token = authHeader.split(" ")[1];
-    if (!token) {
-      const error = new Error("Token is missing...");
+    try {
+      const [, token] = req.headers.split(" ")[1];
+      const user = await jwt.verify(token, process.env.SECRET);
+      req.username = user.username;
+      req.userId = user.id;
+      next();
+    } catch (error) {
+      error.message = "Token no valid";
       error.code = 401;
       next(error);
-    } else {
-      try {
-        const user = jwt.verify(token, process.env.SECRET);
-        req.userId = user.id;
-        next();
-      } catch (error) {
-        error.message = "Token no valid";
-        error.code = 401;
-        next(error);
-      }
     }
   }
 };
