@@ -2,7 +2,7 @@ const User = require("../../database/models/user");
 
 const getUsers = async (req, res, next) => {
   try {
-    const users = await User.find({ id: req.user.id }).populate([
+    const users = await User.find({ _id: req.user.id }).populate([
       {
         path: "enemies friends",
       },
