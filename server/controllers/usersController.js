@@ -2,7 +2,7 @@ const User = require("../../database/models/user");
 
 const getUsers = async (req, res, next) => {
   try {
-    const users = await User.findOne({ _id: req.userId });
+    const users = await User.find();
     res.status(200).json(users);
   } catch (error) {
     error.message = "Cannot search the users";
