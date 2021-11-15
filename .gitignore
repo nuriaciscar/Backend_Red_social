@@ -1,4 +1,5 @@
 .env
 node_modules
 coverage
-scannerwork
+.scannerwork
+*firebase*.json
