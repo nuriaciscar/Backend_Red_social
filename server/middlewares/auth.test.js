@@ -5,7 +5,7 @@ jest.mock("jsonwebtoken");
 
 describe("Given an auth middleware", () => {
   describe("When it gets a request with an incorrect Authorization header", () => {
-    test("Then it should send an error with a message 'Not authorized sorry' and status 401", () => {
+    test("Then it should send an error with a message 'Not authorized sorry' and status 401", async () => {
       const req = {
         header: jest.fn(),
       };
@@ -16,12 +16,12 @@ describe("Given an auth middleware", () => {
 
       const expectedError = new Error("Not authorized sorry");
 
-      auth(req, res, next);
+      await auth(req, res, next);
       expect(next).toBeCalledWith(expectedError);
     });
   });
   describe("When it gets a request with a Authorization header but without a token", () => {
-    test("Then it should send an error with a message 'Token is missing' and status 401", () => {
+    test("Then it should send an error with a message 'Token is missing' and status 401", async () => {
       const authHeader = "nunu";
 
       const req = {
@@ -32,7 +32,7 @@ describe("Given an auth middleware", () => {
       const next = jest.fn();
       const expectedError = new Error("Token is missing...");
 
-      auth(req, res, next);
+      await auth(req, res, next);
 
       expect(next).toHaveBeenCalledWith(expectedError);
     });
